@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Add Family Member" icon-name="standard:account">
+        <lightning-button class="slds-m-horizontal_medium" label="Create" variant="brand" slot="actions" onclick={handleClick} disabled={disable}></lightning-button>
+        <table>
+            <tr>
+                <td>
+                    <lightning-input class="slds-m-horizontal_medium" label="Name" data-inp="1" value={name} ></lightning-input>
+                </td>
+                <td>
+                    <lightning-input class="slds-m-horizontal_medium" label="Relationship" data-inp="2" value={relation}></lightning-input>
+                </td>
+                <td>
+                    <lightning-input class="slds-m-horizontal_medium" label="Email" data-inp="5" value={email}></lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <lightning-input class="slds-m-horizontal_medium" label="Voter ID" data-inp="3" value={voter_Id}></lightning-input>
+                </td>
+                <td>
+                    <lightning-input class="slds-m-horizontal_medium" label="Mobile Number" data-inp="4" value={phone}></lightning-input>
+                </td>
+                <td>
+                    <lightning-input class="slds-m-horizontal_medium" label="Date Of Birth" type="Date" required="true" data-inp="6" value={dob}></lightning-input>
+                </td>
+            </tr>
+        </table>
+    </lightning-card>
+    
+</template>

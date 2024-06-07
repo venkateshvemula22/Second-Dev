@@ -1,0 +1,67 @@
+<template>
+    <template if:true={spinner}>
+        <div class="slds-align_center">
+            <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+        </div>
+    </template>
+    <lightning-card class="slds-p-around_small">
+        <div class="slds-m-left_medium">
+            <table>
+                <tr>
+                    <td>
+                        <lightning-combobox class="slds-col slds-size_4-of-8"
+                            name="Objects"
+                            label="Select Object"
+                            value={selectedObject}
+                            options={objects}
+                            onchange={handleObjectChange} 
+                            required
+                        ></lightning-combobox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!-- Display this box when running user is an admin -->
+                        <template if:true={isAdmin}>
+                            <lightning-dual-listbox class="slds-col slds-size_6-of-12 slds-p-top_medium"
+                                name="multipleFields"
+                                label= "Select Fields"
+                                source-label="Available"
+                                selected-label="Selected"
+                                options={fieldsList}
+                                value={selectedFields}
+                                onchange={handleFieldsChange}>
+                            </lightning-dual-listbox>
+                        </template>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lightning-input class="slds-col slds-size_4-of-8 slds-p-top_medium" 
+                            name="Records count" 
+                            type="Number" 
+                            label="Enter Number Of Records To Display" 
+                            value={recordsCount} 
+                            onchange={handleLimitChange}></lightning-input>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </lightning-card>
+
+    <!--Below is data table to show the selected object records-->
+    <lightning-card title={cardTitle} icon-name="custom:custom11" >
+        <template if:true={recordsList} >
+                <lightning-datatable
+                        key-field="Id"
+                        data={recordsList}
+                        columns={columns}
+                        onrowaction={callRowAction}
+                        show-row-number-column>
+                </lightning-datatable>
+        </template>
+        <template if:false={recordsList} >
+            <div class="slds-text-align_center slds-text-heading_medium"><b>No Data Found</b></div>
+        </template>
+    </lightning-card>
+</template>
